@@ -27,10 +27,15 @@ class MergeSort {
             int first = 0; //beginning of first sub array
             int second = middle; //beginning of second sub array
             int count = 0;
+            bool condition = false;
 
             while (first < middle && second < size) {
                 //compare the elements in the two subarray
-                if (!reverse? (array[first] < array[second]) : (array[first] > array[second])) {
+                condition = !reverse?
+                    array[first] < array[second] :
+                    array[first] > array[second];
+                
+                if (condition) {
                     temp_array[count++] = array[first++];
                 } else {
                     temp_array[count++] = array[second++];
