@@ -15,7 +15,7 @@ class MergeSort {
 
         void mergeSort(int *array, size_t size) {
             if (size <= 1) return; //break if the size is less or equal than one
-            int middle = size / 2;
+            size_t middle = size / 2;
 
             mergeSort(array, middle); //left recursion, the size is half
             mergeSort(array + middle, size - middle); //right recursion, the begining of array is at the middle, size is also half
@@ -23,10 +23,10 @@ class MergeSort {
             merge(array, size, middle); //merge the two subarrays
         }
 
-        void merge(int *array, size_t size, int middle) {
-            int first = 0; //beginning of first sub array
-            int second = middle; //beginning of second sub array
-            int count = 0;
+        void merge(int *array, size_t size, size_t middle) {
+            size_t first = 0; //beginning of first sub array
+            size_t second = middle; //beginning of second sub array
+            size_t count = 0;
             bool condition = false;
 
             while (first < middle && second < size) {
