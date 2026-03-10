@@ -17,11 +17,8 @@ class MergeSort {
             if (size <= 1) return; //break if the size is less or equal than one
             int middle = size / 2;
 
-            if (size > 2) { //make new subarray if the elements are more than two
-                //divide array into two halves
-                mergeSort(array, middle); //left recursion, the size is half
-                mergeSort(array + middle, size - middle); //right recurtion, the begining of array is at the middle, size is also half
-            }
+            mergeSort(array, middle); //left recursion, the size is half
+            mergeSort(array + middle, size - middle); //right recurtion, the begining of array is at the middle, size is also half
 
             merge(array, size, middle); //merge the two subarrays
         }
