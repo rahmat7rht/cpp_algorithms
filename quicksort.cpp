@@ -8,29 +8,29 @@ class QuickSort {
 
     private:
         int *partition(int *array, size_t size) {
-            int *pivot = &array[size - 1];
-            int count = 0; //count the element that are less(or more) than the pivot
+            int *pivot = &array[size - 1]; //pick the lass element as pivot
+            int count = 0; 
 
             for (int i = 0; i < size; i ++) {
                 if (array[i] < *pivot) {
                     if (i != count)
                         swap(array[i], array[count]);
-                    count++;
+                    count++; //count the element that are less(or more in reverse) than the pivot
                 }
             }
-            swap(array[count], *pivot); //move the pivot between the lower and higher values compare to it
+            swap(array[count], *pivot); //move the pivot between the lower and higher value elements compare to it
 
-            return &array[count]; //return the last pivot position
+            return &array[count]; //return the last pivot index position
         }
 
         void quickSort(int *array, size_t size) {
             if (size <= 1) return; //break the recursion if the size is less than two
 
-            int *po_partition = partition(array, size); //get the pivot position
-            int sub_size = po_partition - array; //the size of the left subpartition
+            int *po_partition = partition(array, size); //get the pivot last position
+            int sub_size = po_partition - array; //calculate the size of the last partition that contain elements less than the last pivot
 
-            quickSort(array, sub_size);
-            quickSort(po_partition, size - sub_size); //the size is remain size of the total size minus the sub_size
+            quickSort(array, sub_size); //make new recursion as the end is the last pivot
+            quickSort(po_partition, size - sub_size); //make new recursion as the begining is the last pivot
         }
 
         void swap(int &a, int &b) {
@@ -48,7 +48,7 @@ void print(int *array, size_t size) {
 
 int main() {
     const int size = 9;
-    int list[size] = {65, 33, 98, 3, 2, 66, 89, 9, 44};
+    int list[size] = {65, 33, 98, 7, 28, 66, 89, 9, 22};
     
     std::cout << "Unsorted List:\n";
     print(list, size);
