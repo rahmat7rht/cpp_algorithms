@@ -1,7 +1,40 @@
 #include <iostream>
 
 class SelectionSort {
+    public:
+        void sort(int *array, size_t size) {
+            selectionSort(array, size);
+        }
     
+    private:
+        void selectionSort(int *array, size_t size) {
+            if (size < 1) return;
+            
+            int target = 0;
+            int selected = 0;
+            int n = 0;
+
+            while (target < size) {
+                if (array[selected] > array[n]) {
+                    selected = n;
+                }
+
+                if (++n >= size) {
+                    if (target != selected)
+                        swap(array[target], array[selected]); //swap target element with the selected element
+
+                    target++;
+                    selected = target;
+                    n = target;
+                }
+            }
+        }
+
+        void swap(int &a, int &b) {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
 };
 
 void print(int *array, size_t size) {
@@ -16,6 +49,9 @@ int main() {
     
     std::cout << "Unsorted List:\n";
     print(list, size);
+
+    SelectionSort selectionSort;
+    selectionSort.sort(list, size);
 
     std::cout << "Sorted List:\n";
     print(list, size);
