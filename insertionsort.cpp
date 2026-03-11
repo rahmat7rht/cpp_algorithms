@@ -8,6 +8,8 @@ class InsertionSort {
 
     private:
         void insertionSort(int *array, size_t size) {
+            if (size < 1) return;
+            
             int length = 0;
             int index_select = 0;
 
