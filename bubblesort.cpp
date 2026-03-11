@@ -15,7 +15,7 @@ class BubbleSort {
                     swap(array[n], array[n + 1]);
                 }
                 
-                if (!(++n < length)) {
+                if (++n >= length - 1) {
                     n = 0;
                     length--;
                 }
