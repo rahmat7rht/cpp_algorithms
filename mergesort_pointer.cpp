@@ -50,8 +50,11 @@ class MergeSort {
                 temp_array[count++] = *(second++);
             }
 
-            for (int i = 0; i < count; i++) {
-                start[i] = temp_array[i];
+            for (int i = 0, k = 0; i < count; i++) {
+                if (&start[i] <= end)
+                    start[i] = temp_array[i];
+                else
+                    start2[k++] = temp_array[i];
             }
         }
 
