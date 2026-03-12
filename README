@@ -4,5 +4,10 @@ Algorithms implemented from scratch for learning purposes.
 
 Sorting
 - Merge Sort
+- Insertion Sort
+- Bubble Sort
+- Selection Sort
+- Quick Sort
+- Pointer Based Quick Sort
 
 More algorithms will be added.
