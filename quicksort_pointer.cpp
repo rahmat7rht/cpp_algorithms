@@ -29,7 +29,7 @@ class QuickSort {
             int *pivot = partition(start, end); //get the pivot partition address
             
             quickSort(start, pivot - 1); //make a new recursion with the end is at the element before the pivot
-            quickSort(pivot, end); //make a new recursion with the begining is at the pivot address
+            quickSort(pivot + 1, end); //make a new recursion with the begining is at after the pivot address
         }
 
         void swap(int &a, int &b) {
