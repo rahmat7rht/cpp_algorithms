@@ -3,28 +3,48 @@
 class QuickSort {
     public:
         void sort(int *array, size_t size) {
+            if (size <= 1) return;
             quickSort(array, array + size - 1);
         }
 
     private:
         int *partition(int *start, int *end) {
+            //if the size is more than 2, implement median-of-three for pivot
+            if (end - start + 1 > 2) {
+                int *mid = start + (end - start) / 2;
+
+                if (*mid < *start) {
+                    swap(*mid, *start);
+                }
+
+                if (*end < *start) {
+                    swap(*end, *start);
+                }
+
+                if (*end < *mid) {
+                    swap(*end, *mid);
+                }
+
+                swap(*mid, *end); //with the median is sorted, then swap the middle with high, so that the pivot is picked the middle
+            }
+
             int *pivot = end; //pick the last element as pivot
             int *low = start; 
 
             for (int *point = low; point < end; point++) {
                 if (*point < *pivot) { //compare the point value with the pivot, if less, swap with low pointer value
-                    if (point != low) //prevent swaping the same variable
-                        swap(*point, *low);
+                    swap(*point, *low);
                     low++; //move the low pointer to the next element
                 }
             }
+
             swap(*low, *pivot); //swap the pivot with an element that is in the middle between low and high
 
             return low; //return the pivot address
         }
 
         void quickSort(int *start, int *end) {
-            if (end <= start) return; //break the stack recursion if the end address same address as start (means the size is one or less)
+            if (end <= start) return; //break the stack recursion if the end address same as address start (means the size is one or less)
 
             int *pivot = partition(start, end); //get the pivot partition address
             
@@ -40,7 +60,7 @@ class QuickSort {
 };
 
 void print(int *array, size_t size) {
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         std::cout << array[i] << ((i + 1) < size? ", ":"\n");
     }
 }
