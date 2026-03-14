@@ -24,7 +24,7 @@ class QuickSort {
         }
 
         void quickSort(int *start, int *end) {
-            if (end - start < 1) return; //break the recursion if size is less than one
+            if (end <= start) return; //break the stack recursion if the end address same address as start (means the size is one or less)
 
             int *pivot = partition(start, end); //get the pivot partition address
             
