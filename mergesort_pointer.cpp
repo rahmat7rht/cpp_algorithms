@@ -14,7 +14,7 @@ class MergeSort {
         int *temp_array = nullptr;
 
         void mergeSort(int *start, int *end) {
-            if ((end - start) < 1) return; //break if the size is less than one
+            if (end <= start) return; //break if the size is less than one
             int *middle = start + ((end - start) / 2);
 
             mergeSort(start, middle); //left recursion, the size is half
