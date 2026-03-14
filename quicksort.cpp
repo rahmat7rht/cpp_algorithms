@@ -7,30 +7,31 @@ class QuickSort {
         }
 
     private:
-        int *partition(int *array, size_t size) {
+        int partition(int *array, size_t size) {
             int *pivot = &array[size - 1]; //pick the lass element as pivot
-            int count = 0; 
+            int low = 0; 
 
-            for (int i = 0; i < size; i ++) {
+            for (size_t i = 0; i < size - 1; i ++) {
                 if (array[i] < *pivot) {
-                    if (i != count)
-                        swap(array[i], array[count]);
-                    count++; //count the element that are less(or more in reverse) than the pivot
+                    if (i != low) //prevent swaping the same variable
+                        swap(array[i], array[low]);
+                    low++; //count the element that are less(or more in reverse) than the pivot
                 }
             }
-            swap(array[count], *pivot); //move the pivot between the lower and higher value elements compare to it
 
-            return &array[count]; //return the last pivot index position
+            swap(array[low], *pivot); //move the pivot into between the lower and higher value elements compare to it
+
+            return low; //return the last pivot index
         }
 
         void quickSort(int *array, size_t size) {
             if (size <= 1) return; //break the recursion if the size is less than two
 
-            int *po_pivot = partition(array, size); //get the pivot last position
-            int sub_size = po_pivot - array; //calculate the size of the last partition that contain elements less than the last pivot
+            int pivot_index = partition(array, size); //get the pivot last index
+            size_t right_partition_size = size - pivot_index - 1; //calculate the size of the last partition after the pivot index
 
-            quickSort(array, sub_size); //make new recursion as the end is the last pivot
-            quickSort(po_pivot, size - sub_size); //make new recursion as the begining is the last pivot
+            quickSort(array, pivot_index); //make a new recursion as the size is upto pivot_index
+            quickSort(array + pivot_index + 1, right_partition_size); //make a new recursion after the pivot index
         }
 
         void swap(int &a, int &b) {
